@@ -4,7 +4,7 @@ import time
 import subprocess
 
 WATCH_FILE = "data/new_booking.xlsx"
-CHECK_INTERVAL = 5  # seconds
+CHECK_INTERVAL = 3  # seconds
 
 def get_mtime(path):
     return os.path.getmtime(path) if os.path.exists(path) else 0
