@@ -15,7 +15,7 @@ def run_pipeline():
     subprocess.run(["python", "main.py"], check=True)
 
 if __name__ == "__main__":
-    print(f"👀 Watching {WATCH_FILE} for changes...")
+    print(f"Watching {WATCH_FILE} for changes...")
     last = get_mtime(WATCH_FILE)
     while True:
         try:
@@ -25,5 +25,5 @@ if __name__ == "__main__":
                 last = curr
                 run_pipeline()
         except KeyboardInterrupt:
-            print("🛑 Watcher stopped.")
+            print("Watcher stopped.")
             break

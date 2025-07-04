@@ -22,7 +22,7 @@ models/**/*.npy
 !models/.gitkeep
 
 # ─── Logs & other artifacts ───────────────────────────
-logs/
+logs/pipeline_log.txt
 *.log
 
 # ─── OS cruft ─────────────────────────────────────────
