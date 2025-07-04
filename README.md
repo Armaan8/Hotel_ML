@@ -71,7 +71,7 @@ This pipeline automates the complete lifecycle:
 
 1. **Clone the repo**:
    ```bash
-   git clone https://github.com/Armaan8/Hotel_MLOps.git
+   git clone https://github.com/Armaan8/Hotel_ML.git
    cd Hotel_MLOps
    ```
 2. **Create virtual environment**:
