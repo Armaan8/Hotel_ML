@@ -1,31 +1,24 @@
-# ─── Bytecode & caches ───────────────────────────────
 __pycache__/
 *.py[cod]
 
-# ─── Virtual envs & IDE ───────────────────────────────
 env/
 venv/
 .idea/
 .vscode/
 
-# Track Excel and DVC pointers, but not raw binaries
 data/*.xlsx
 !data/*.dvc
 
-# ─── Models folder ────────────────────────────────────
-# Ignore only model binaries, not DVC pointer files
 models/**/*.pkl
 models/**/*.joblib
 models/**/*.npy
-# Allow DVC pointer files and the .gitkeep
+
 !models/**/*.dvc
 !models/.gitkeep
 
-# ─── Logs & other artifacts ───────────────────────────
 logs/pipeline_log.txt
 *.log
 
-# ─── OS cruft ─────────────────────────────────────────
 .DS_Store
 Thumbs.db
-/metrics
+/metrics/*.json

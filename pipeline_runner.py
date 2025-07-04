@@ -31,7 +31,7 @@ def run_pipeline():
     ensure_master_files()
     METRICS_DIR.mkdir(exist_ok=True)
 
-    # 1️⃣ Load config
+    # 1️Load config
     try:
         cfg = yaml.safe_load(open(CONFIG_PATH))
         model_names = cfg["models"]
@@ -40,13 +40,13 @@ def run_pipeline():
         print("❌ Failed to load config.yml:", e)
         return
 
-    # 2️⃣ Load master data
+    # Load master data
     occ_df = load_last_500_rows(OCC_MASTER)
     pri_df = load_last_500_rows(PRI_MASTER)
 
-    # 3️⃣ Train or load each model
+    # Train or load each model
     results = {}
-    model_objs = {}  # store trained models here
+    model_objs = {} 
 
     for name in model_names:
         print(f"   • Model: {name}")
@@ -66,7 +66,7 @@ def run_pipeline():
         results[f"{name}_metrics"] = metrics
         model_objs[name] = model
 
-    # 4️⃣ Save metrics JSON
+    # Save metrics JSON
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     metrics_payload = {
         name: results[f"{name}_metrics"] for name in model_names
@@ -74,12 +74,12 @@ def run_pipeline():
     metrics_path = METRICS_DIR / f"{timestamp}_metrics.json"
     with open(metrics_path, "w") as f:
         json.dump(metrics_payload, f, default=str, indent=2)
-    print(f"✅ Saved run metrics to {metrics_path}")
+    print(f"Saved run metrics to {metrics_path}")
 
-    # 5️⃣ Predict & append if booking file exists
+    # Predict & append if booking file exists
     if NEW_BOOK_PATH.exists():
         booking = load_new_booking(NEW_BOOK_PATH)
-        print("📥 Booking found → running predictions…")
+        print("Booking found → running predictions…")
 
         occ_mod = importlib.import_module("src.occupancy_model")
         rew_mod = importlib.import_module("src.rewards_model")
@@ -91,7 +91,7 @@ def run_pipeline():
 
         print(f"   → Occ: {occ_cls}, Rew: {rew_cls}, Price: {price:.2f}")
 
-        # ⬇ Append to occupancy master
+        # Append to occupancy master
         occ_row = occ_mod.make_occ_features(booking)
         occ_row["occ_class"] = occ_cls
         occ_row = occ_row.reindex(
@@ -99,7 +99,7 @@ def run_pipeline():
         )
         append_to_master(OCC_MASTER, occ_row)
 
-        # ⬇ Append to pricing master
+        # Append to pricing master
         price_row = pri_mod.make_pricing_features(booking)
         price_row["points_class"] = rew_cls
         price_row["final_price"] = price
@@ -109,7 +109,7 @@ def run_pipeline():
         )
         append_to_master(PRI_MASTER, price_row)
 
-        # ✅ Log readable results
+        # Log readable results
         log_results(
             occ_cls,
             rew_cls,
@@ -118,11 +118,11 @@ def run_pipeline():
             results["rewards_metrics"],
             results["pricing_metrics"],
         )
-        print("✅ Predictions appended and logged.")
+        print("Predictions appended and logged.")
     else:
-        print("ℹ️ No new_booking.xlsx — training-only run.")
+        print("No new_booking.xlsx — training-only run.")
 
-    print("🏁 [Runner] Finished.")
+    print("[Runner] Finished.")
 
 
 if __name__ == "__main__":
