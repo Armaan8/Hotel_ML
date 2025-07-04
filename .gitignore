@@ -23,3 +23,5 @@ logs/pipeline_log.txt
 Thumbs.db
 /metrics/*.json
 /metrics
+
+.dvc/
