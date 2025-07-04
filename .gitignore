@@ -22,3 +22,4 @@ logs/pipeline_log.txt
 .DS_Store
 Thumbs.db
 /metrics/*.json
+/metrics
