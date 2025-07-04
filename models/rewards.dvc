@@ -1,6 +1,6 @@
 outs:
-- md5: 354f6bf4806b520a52b2453200029fb3.dir
-  size: 7777951
-  nfiles: 14
+- md5: 4c1941e6c4ca0140d2d23f953d8c01f5.dir
+  size: 1133060
+  nfiles: 3
   hash: md5
   path: rewards

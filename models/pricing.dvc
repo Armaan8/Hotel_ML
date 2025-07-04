@@ -1,6 +1,6 @@
 outs:
-- md5: 346ccc3e203d184ee13602fed5549d75.dir
-  size: 11429
-  nfiles: 15
+- md5: 8fe20e5e63394fcd19d9f519b8427b53.dir
+  size: 2546
+  nfiles: 4
   hash: md5
   path: pricing
